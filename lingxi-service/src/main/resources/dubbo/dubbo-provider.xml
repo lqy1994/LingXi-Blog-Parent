@@ -21,7 +21,6 @@
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService" ref="articleService"/>
 
-
     <bean id="articleMateService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.ArticleMateServiceImpl"/>
     <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleMateService" ref="articleMateService"/>
 
@@ -48,6 +47,5 @@
 
     <bean id="userService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.UserServiceImpl"/>
     <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IUserService" ref="userService"/>
-
 
 </beans>

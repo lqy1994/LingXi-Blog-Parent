@@ -30,7 +30,7 @@ import java.util.List;
  * 顶部菜单
  */
 @Controller
-@RequestMapping("/lingxi/")
+@RequestMapping("/lingxi")
 public class HeadController extends BaseController {
 
     //    @Reference(version = "1.0.0", application = "${dubbo.application.id}", url = "dubbo://localhost:20880")
@@ -54,7 +54,7 @@ public class HeadController extends BaseController {
      *
      * @return
      */
-    @GetMapping(value = "archives")
+    @GetMapping(value = "/archives")
     public String archives(Model model) {
         List<ArchiveBo> archives = siteService.getArchives();
         model.addAttribute("archives", archives);
@@ -66,7 +66,7 @@ public class HeadController extends BaseController {
      *
      * @return
      */
-    @GetMapping(value = "links")
+    @GetMapping(value = "/links")
     public String links(Model model) {
         List<Meta> links = metaService.getMetas(TypeEnum.LINK.getType());
         model.addAttribute("links", links);

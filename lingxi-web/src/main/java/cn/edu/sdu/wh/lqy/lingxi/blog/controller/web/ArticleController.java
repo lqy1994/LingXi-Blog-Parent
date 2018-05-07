@@ -31,7 +31,7 @@ import java.util.List;
  * 文章
  */
 @Controller
-@RequestMapping("/lingxi/")
+@RequestMapping("/lingxi")
 public class ArticleController extends BaseController {
 
     //    @Reference(version = "1.0.0", application = "${dubbo.application.id}", url = "dubbo://localhost:20880")

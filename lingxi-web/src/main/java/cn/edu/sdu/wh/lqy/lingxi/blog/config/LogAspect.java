@@ -1,4 +1,4 @@
-package cn.edu.sdu.wh.lqy.lingxi.blog.utils;
+package cn.edu.sdu.wh.lqy.lingxi.blog.config;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -33,7 +33,7 @@ public class LogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         // 记录下请求内容
-        LOGGER.info("Request-url: " + request.getRequestURL().toString() + ",IP : " + request.getRemoteAddr() + ",Class_Method : "
+        LOGGER.info("Request-url: " + request.getRequestURL().toString() + ", IP : " + request.getRemoteAddr() + ",Class_Method : "
                 + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName()
                 + ",Args : " + Arrays.toString(joinPoint.getArgs()));
     }
