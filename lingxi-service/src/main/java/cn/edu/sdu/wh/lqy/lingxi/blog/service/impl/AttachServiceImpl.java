@@ -24,7 +24,7 @@ public class AttachServiceImpl implements IAttachService {
     private AttachMapper attachMapper;
 
     @Override
-    public PageInfo<Attach> getAttachs(Integer page, Integer limit) {
+    public PageInfo<Attach> getAttaches(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         AttachVoExample attachVoExample = new AttachVoExample();
         attachVoExample.setOrderByClause("id desc");
@@ -42,9 +42,9 @@ public class AttachServiceImpl implements IAttachService {
 
     @Override
     @Transactional
-    public void save(String fname, String fkey, String ftype, Integer author) {
+    public void save(String fName, String fkey, String ftype, Integer author) {
         Attach attach = new Attach();
-        attach.setFname(fname);
+        attach.setFname(fName);
         attach.setAuthorId(author);
         attach.setFkey(fkey);
         attach.setFtype(ftype);

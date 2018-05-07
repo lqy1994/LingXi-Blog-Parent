@@ -4,11 +4,10 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.constant.RestPageConst;
 import cn.edu.sdu.wh.lqy.lingxi.blog.constant.WebConstant;
 import cn.edu.sdu.wh.lqy.lingxi.blog.controller.BaseController;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.TypeEnum;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IMetaService;
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,15 +43,15 @@ public class CategoryController extends BaseController {
     public String categories(Model model, @PathVariable String keyword,
                              @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
         page = page < 0 || page > WebConstant.MAX_PAGE ? 1 : page;
-        MetaDto metaDto = metaService.getMeta(TypeEnum.CATEGORY.getType(), keyword);
-        if (null == metaDto) {
+        MetaDTO metaDTO = metaService.getMeta(TypeEnum.CATEGORY.getType(), keyword);
+        if (null == metaDTO) {
             return this.render_404();
         }
 
-        PageInfo<Article> articlePage = articleService.getArticles(metaDto.getMid(), page, limit);
+        PageInfo<Article> articlePage = articleService.getArticles(metaDTO.getMid(), page, limit);
 
         model.addAttribute("articles", articlePage);
-        model.addAttribute("meta", metaDto);
+        model.addAttribute("meta", metaDTO);
         model.addAttribute("type", "分类");
         model.addAttribute("keyword", keyword);
         return RestPageConst.PAGE_CAT;

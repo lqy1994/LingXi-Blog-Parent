@@ -5,7 +5,7 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.BackResponseBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.StatisticsBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Comment;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 
 import java.util.List;
 
@@ -67,6 +67,6 @@ public interface ISiteService {
      * 获取分类/标签列表
      * @return
      */
-    List<MetaDto> metas(String type, String orderBy, int limit);
+    List<MetaDTO> metas(String type, String orderBy, int limit);
 
 }

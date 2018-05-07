@@ -131,10 +131,10 @@ public class ArticleController extends BaseController {
         hits++;
 
         if (hits >= WebConstant.HIT_EXCEED) {
-            Article temp = new Article();
-            temp.setId(articleId);
-            temp.setHits(dbHits + hits);
-            articleService.updateContentByCid(temp);
+            Article article = new Article();
+            article.setId(articleId);
+            article.setHits(dbHits + hits);
+            articleService.updateArticleById(article);
             valueOperations().set("article" + ":" + "hits", 1 + "");
         } else {
             valueOperations().set("article" + ":" + "hits", hits + "");

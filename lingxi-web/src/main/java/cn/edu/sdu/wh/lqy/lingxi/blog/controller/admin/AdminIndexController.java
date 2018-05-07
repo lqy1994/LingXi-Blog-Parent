@@ -33,7 +33,6 @@ import java.util.List;
 /**
  * 后台管理首页
  */
-//@Controller("adminIndexController")
 @Controller
 @RequestMapping("/admin")
 @Transactional(rollbackFor = LingXiException.class)

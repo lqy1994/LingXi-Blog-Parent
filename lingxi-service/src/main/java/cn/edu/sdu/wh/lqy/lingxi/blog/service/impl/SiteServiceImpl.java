@@ -10,14 +10,13 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.ArchiveBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.BackResponseBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.StatisticsBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.*;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.TypeEnum;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.ISiteService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.DateKit;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.TaleUtils;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.ZipUtils;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.backup.Backup;
-import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -196,9 +195,9 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     @Override
-    public List<MetaDto> metas(String type, String orderBy, int limit){
+    public List<MetaDTO> metas(String type, String orderBy, int limit){
         LOGGER.debug("Enter metas method:type={},order={},limit={}", type, orderBy, limit);
-        List<MetaDto> retList=null;
+        List<MetaDTO> retList=null;
         if (StringUtils.isNotBlank(type)) {
             if(StringUtils.isBlank(orderBy)){
                 orderBy = "count desc, a.mid desc";

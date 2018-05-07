@@ -7,18 +7,20 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.ArticleDTO;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.search.ServiceMultiResult;
 import com.github.pagehelper.PageInfo;
 
-public interface IArticleService  {
+public interface IArticleService {
 
     /**
      * 发布文章
+     *
      * @param contents
      */
     String publish(Article contents);
 
     /**
-     *查询文章返回多条数据
+     * 查询文章返回多条数据
+     *
      * @param offset 当前页
-     * @param limit 每页条数
+     * @param limit  每页条数
      * @return Article
      */
     PageInfo<Article> getArticles(Integer offset, Integer limit);
@@ -34,15 +36,17 @@ public interface IArticleService  {
 
     /**
      * 根据主键更新
+     *
      * @param article article
      */
-    void updateContentByCid(Article article);
+    void updateArticleById(Article article);
 
 
     /**
      * 查询分类/标签下的文章归档
-     * @param mid mid
-     * @param page page
+     *
+     * @param mid   mid
+     * @param page  page
      * @param limit limit
      * @return Article
      */
@@ -50,9 +54,10 @@ public interface IArticleService  {
 
     /**
      * 搜索、分页
+     *
      * @param keyword keyword
-     * @param page page
-     * @param limit limit
+     * @param page    page
+     * @param limit   limit
      * @return Article
      */
     PageInfo<Article> getArticles(String keyword, Integer page, Integer limit);
@@ -64,15 +69,18 @@ public interface IArticleService  {
      * @param limit
      * @return
      */
-    PageInfo<Article> getArticlesWithpage(ArticleExample commentVoExample, Integer page, Integer limit);
+    PageInfo<Article> getArticlesWithPage(ArticleExample commentVoExample, Integer page, Integer limit);
+
     /**
      * 根据文章id删除
-     * @param cid
+     *
+     * @param id
      */
-    String deleteByCid(Integer cid);
+    String deleteById(Integer id);
 
     /**
      * 编辑文章
+     *
      * @param contents
      */
     String updateArticle(Article contents);
@@ -80,11 +88,18 @@ public interface IArticleService  {
 
     /**
      * 更新原有文章的category
+     *
      * @param ordinal
-     * @param newCatefory
+     * @param newCategory
      */
-    void updateCategory(String ordinal, String newCatefory);
+    void updateCategory(String ordinal, String newCategory);
 
+    /**
+     * 搜索文章
+     *
+     * @param browseSearch
+     * @return
+     */
     ServiceMultiResult<ArticleDTO> query(BrowseSearch browseSearch);
 
 }

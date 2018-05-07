@@ -181,7 +181,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public void updateContentByCid(Article article) {
+    public void updateArticleById(Article article) {
         if (null != article && null != article.getId()) {
             articleMapper.updateByPrimaryKeySelective(article);
 //            articleMapper.updateById(article);
@@ -212,7 +212,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public PageInfo<Article> getArticlesWithpage(ArticleExample commentVoExample, Integer page, Integer limit) {
+    public PageInfo<Article> getArticlesWithPage(ArticleExample commentVoExample, Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         List<Article> articles = articleMapper.selectByExampleWithBLOBs(commentVoExample);
         return new PageInfo<>(articles);
@@ -220,7 +220,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Override
     @Transactional
-    public String deleteByCid(Integer id) {
+    public String deleteById(Integer id) {
         Article article = getArticle(id + "");
         if (null != article) {
             articleMapper.deleteByPrimaryKey(id);
@@ -231,9 +231,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public void updateCategory(String ordinal, String newCatefory) {
+    public void updateCategory(String ordinal, String newCategory) {
         Article article = new Article();
-        article.setCategories(newCatefory);
+        article.setCategories(newCategory);
         ArticleExample example = new ArticleExample();
         example.createCriteria().andCategoriesEqualTo(ordinal);
         articleMapper.updateByExampleSelective(article, example);

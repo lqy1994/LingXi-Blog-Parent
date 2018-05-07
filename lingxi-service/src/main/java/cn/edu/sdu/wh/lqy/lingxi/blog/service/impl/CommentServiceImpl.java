@@ -66,7 +66,7 @@ public class CommentServiceImpl implements ICommentService {
         Article temp = new Article();
         temp.setId(article.getId());
         temp.setCommentsNum(article.getCommentsNum() + 1);
-        articleService.updateContentByCid(temp);
+        articleService.updateArticleById(temp);
 
         return WebConstant.SUCCESS_RESULT;
     }
@@ -123,7 +123,7 @@ public class CommentServiceImpl implements ICommentService {
             Article temp = new Article();
             temp.setId(id);
             temp.setCommentsNum(contents.getCommentsNum() - 1);
-            articleService.updateContentByCid(temp);
+            articleService.updateArticleById(temp);
         }
     }
 

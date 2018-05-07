@@ -7,12 +7,11 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMeta;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.MetaVoExample;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.TypeEnum;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleMateService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IMetaService;
-import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +36,7 @@ public class MetaServiceImpl implements IMetaService {
     private IArticleService articleService;
 
     @Override
-    public MetaDto getMeta(String type, String name) {
+    public MetaDTO getMeta(String type, String name) {
         if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(name)) {
             return metaMapper.selectDtoByNameAndType(name, type);
         }
@@ -61,7 +60,7 @@ public class MetaServiceImpl implements IMetaService {
     }
 
     @Override
-    public List<MetaDto> getMetaList(String type, String orderby, int limit) {
+    public List<MetaDTO> getMetaList(String type, String orderby, int limit) {
         if (StringUtils.isNotBlank(type)) {
             if (StringUtils.isBlank(orderby)) {
                 orderby = "count desc, a.mid desc";
@@ -88,7 +87,7 @@ public class MetaServiceImpl implements IMetaService {
 
             metaMapper.deleteByPrimaryKey(mid);
 
-            List<ArticleMeta> rlist = relationshipService.getRelationshipById(null, mid);
+            List<ArticleMeta> rlist = relationshipService.getArticleMetaById(null, mid);
             if (null != rlist) {
                 for (ArticleMeta r : rlist) {
                     Article contents = articleService.getArticle(String.valueOf(r.getCid()));
@@ -101,7 +100,7 @@ public class MetaServiceImpl implements IMetaService {
                         if (type.equals(TypeEnum.TAG.getType())) {
                             temp.setTags(reMeta(name, contents.getTags()));
                         }
-                        articleService.updateContentByCid(temp);
+                        articleService.updateArticleById(temp);
                     }
                 }
             }
@@ -176,7 +175,7 @@ public class MetaServiceImpl implements IMetaService {
                 ArticleMeta relationships = new ArticleMeta();
                 relationships.setCid(cid);
                 relationships.setMid(mid);
-                relationshipService.insertVo(relationships);
+                relationshipService.insertArticleMeta(relationships);
             }
         }
     }

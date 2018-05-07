@@ -2,7 +2,7 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.mapper;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.MetaVoExample;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +11,7 @@ import java.util.Map;
 
 @Component
 public interface MetaMapper {
+
     long countByExample(MetaVoExample example);
 
     int deleteByExample(MetaVoExample example);
@@ -33,9 +34,9 @@ public interface MetaMapper {
 
     int updateByPrimaryKey(Meta record);
 
-    List<MetaDto> selectFromSql(Map<String, Object> paraMap);
+    List<MetaDTO> selectFromSql(Map<String, Object> paraMap);
 
-    MetaDto selectDtoByNameAndType(@Param("name") String name, @Param("type") String type);
+    MetaDTO selectDtoByNameAndType(@Param("name") String name, @Param("type") String type);
 
     Integer countWithSql(Integer mid);
 }

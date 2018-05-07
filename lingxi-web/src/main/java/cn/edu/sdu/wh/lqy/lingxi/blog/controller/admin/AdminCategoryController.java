@@ -4,10 +4,9 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.constant.RestPageConst;
 import cn.edu.sdu.wh.lqy.lingxi.blog.constant.WebConstant;
 import cn.edu.sdu.wh.lqy.lingxi.blog.controller.BaseController;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.ApiResponse;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.TypeEnum;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IMetaService;
-import com.alibaba.dubbo.config.annotation.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,8 @@ public class AdminCategoryController extends BaseController {
 
     @GetMapping(value = "")
     public String index(HttpServletRequest request) {
-        List<MetaDto> categories = metasService.getMetaList(TypeEnum.CATEGORY.getType(), null, WebConstant.MAX_POSTS);
-        List<MetaDto> tags = metasService.getMetaList(TypeEnum.TAG.getType(), null, WebConstant.MAX_POSTS);
+        List<MetaDTO> categories = metasService.getMetaList(TypeEnum.CATEGORY.getType(), null, WebConstant.MAX_POSTS);
+        List<MetaDTO> tags = metasService.getMetaList(TypeEnum.TAG.getType(), null, WebConstant.MAX_POSTS);
         request.setAttribute("categories", categories);
         request.setAttribute("tags", tags);
         return RestPageConst.ADMIN_CATEGORY;

@@ -33,7 +33,7 @@ public class ArticleMateServiceImpl implements IArticleMateService {
     }
 
     @Override
-    public List<ArticleMeta> getRelationshipById(Integer cid, Integer mid) {
+    public List<ArticleMeta> getArticleMetaById(Integer cid, Integer mid) {
         RelationshipVoExample relationshipVoExample = new RelationshipVoExample();
         RelationshipVoExample.Criteria criteria = relationshipVoExample.createCriteria();
         if (cid != null) {
@@ -46,7 +46,7 @@ public class ArticleMateServiceImpl implements IArticleMateService {
     }
 
     @Override
-    public void insertVo(ArticleMeta articleMeta) {
+    public void insertArticleMeta(ArticleMeta articleMeta) {
         articleMetaMapper.insert(articleMeta);
     }
 

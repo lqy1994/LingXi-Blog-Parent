@@ -2,7 +2,7 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.model.dto;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
 
-public class MetaDto extends Meta {
+public class MetaDTO extends Meta {
 
     private int count;
 

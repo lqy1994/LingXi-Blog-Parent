@@ -1,7 +1,7 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.service;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDto;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface IMetaService {
      * @param name
      * @return
      */
-    MetaDto getMeta(String type, String name);
+    MetaDTO getMeta(String type, String name);
 
     /**
      * 根据文章id获取项目个数
@@ -53,7 +53,7 @@ public interface IMetaService {
      * 根据类型查询项目列表，带项目下面的文章数
      * @return
      */
-    List<MetaDto> getMetaList(String type, String orderby, int limit);
+    List<MetaDTO> getMetaList(String type, String orderby, int limit);
 
     /**
      * 删除项目

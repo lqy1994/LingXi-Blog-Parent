@@ -59,7 +59,7 @@ public class AdminAttachController extends BaseController {
     @GetMapping(value = "")
     public String index(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page,
                         @RequestParam(value = "limit", defaultValue = "12") int limit) {
-        PageInfo<Attach> attachPaginator = attachService.getAttachs(page, limit);
+        PageInfo<Attach> attachPaginator = attachService.getAttaches(page, limit);
         request.setAttribute("attachs", attachPaginator);
         request.setAttribute(TypeEnum.ATTACH_URL.getType(), Commons.site_option(TypeEnum.ATTACH_URL.getType(), Commons.site_url()));
         request.setAttribute("max_file_size", WebConstant.MAX_FILE_SIZE / 1024);

@@ -52,7 +52,7 @@ public class AdminArticleController extends BaseController {
         ArticleExample articleExample = new ArticleExample();
         articleExample.setOrderByClause("created desc");
         articleExample.createCriteria().andTypeEqualTo(TypeEnum.ARTICLE.getType());
-        PageInfo<Article> contentsPaginator = articleService.getArticlesWithpage(articleExample, page, limit);
+        PageInfo<Article> contentsPaginator = articleService.getArticlesWithPage(articleExample, page, limit);
         request.setAttribute("articles", contentsPaginator);
         return RestPageConst.ADMIN_ARTICLE_LIST;
     }
@@ -107,7 +107,7 @@ public class AdminArticleController extends BaseController {
     @RequestMapping(value = "/delete")
     @ResponseBody
     public ApiResponse delete(@RequestParam int cid, HttpServletRequest request) {
-        String result = articleService.deleteByCid(cid);
+        String result = articleService.deleteById(cid);
         logService.insertLog(LogActions.DEL_ARTICLE.getAction(), cid + "", request.getRemoteAddr(), this.getUid(request));
         if (!WebConstant.SUCCESS_RESULT.equals(result)) {
             return ApiResponse.fail(result);

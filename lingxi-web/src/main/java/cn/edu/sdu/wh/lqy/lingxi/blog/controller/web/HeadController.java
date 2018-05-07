@@ -109,10 +109,10 @@ public class HeadController extends BaseController {
         hits++;
 
         if (hits >= WebConstant.HIT_EXCEED) {
-            Article temp = new Article();
-            temp.setId(articleId);
-            temp.setHits(chits + hits);
-            articleService.updateContentByCid(temp);
+            Article article = new Article();
+            article.setId(articleId);
+            article.setHits(chits + hits);
+            articleService.updateArticleById(article);
             redisTemplate.opsForValue().set("article" + ":" + "hits", 1 + "");
         } else {
             redisTemplate.opsForValue().set("article" + ":" + "hits", hits + "");

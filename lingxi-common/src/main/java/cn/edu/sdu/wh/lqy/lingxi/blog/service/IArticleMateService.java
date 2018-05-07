@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IArticleMateService {
     /**
-     * 按住键删除
+     * 删除
      * @param cid
      * @param mid
      */
@@ -25,7 +25,7 @@ public interface IArticleMateService {
      * 保存對象
      * @param articleMeta
      */
-    void insertVo(ArticleMeta articleMeta);
+    void insertArticleMeta(ArticleMeta articleMeta);
 
     /**
      * 根据id搜索
@@ -33,5 +33,5 @@ public interface IArticleMateService {
      * @param mid
      * @return
      */
-    List<ArticleMeta> getRelationshipById(Integer cid, Integer mid);
+    List<ArticleMeta> getArticleMetaById(Integer cid, Integer mid);
 }

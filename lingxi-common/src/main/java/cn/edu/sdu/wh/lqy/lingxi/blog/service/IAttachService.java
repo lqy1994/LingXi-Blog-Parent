@@ -10,17 +10,17 @@ public interface IAttachService {
      * @param limit
      * @return
      */
-    PageInfo<Attach> getAttachs(Integer page, Integer limit);
+    PageInfo<Attach> getAttaches(Integer page, Integer limit);
 
     /**
      * 保存附件
      *
-     * @param fname
+     * @param fName
      * @param fkey
      * @param ftype
      * @param author
      */
-    void save(String fname, String fkey, String ftype, Integer author);
+    void save(String fName, String fkey, String ftype, Integer author);
 
     /**
      * 根据附件id查询附件
