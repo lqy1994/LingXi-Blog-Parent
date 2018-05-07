@@ -1,0 +1,53 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath*:dubbo/dubbo.properties"/>
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="${dubbo.application.provider}"/>
+
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234"/>-->
+    <dubbo:registry address="${dubbo.registry.address}"/>
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}"/>
+
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="articleService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.ArticleServiceImpl"/>
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService" ref="articleService"/>
+
+
+    <bean id="articleMateService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.ArticleMateServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleMateService" ref="articleMateService"/>
+
+    <bean id="metaService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.MetaServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IMetaService" ref="metaService"/>
+
+    <bean id="attachService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.AttachServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IAttachService" ref="attachService"/>
+
+    <bean id="commentService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.CommentServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ICommentService" ref="commentService"/>
+
+    <bean id="logService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.LogServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ILogService" ref="logService"/>
+
+    <bean id="optionService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.OptionServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IOptionService" ref="optionService"/>
+
+    <bean id="searchService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.SearchServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ISearchService" ref="searchService"/>
+
+    <bean id="siteService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.SiteServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ISiteService" ref="siteService"/>
+
+    <bean id="userService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.UserServiceImpl"/>
+    <dubbo:service interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IUserService" ref="userService"/>
+
+
+</beans>

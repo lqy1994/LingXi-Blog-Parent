@@ -1,0 +1,48 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath*:dubbo/dubbo.properties"/>
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="lingxi-dubbo-consumer"/>
+
+    <dubbo:protocol host="172.16.48.1" port="20880"/>
+    <!--<dubbo:protocol host="172.16.48.131" port="20880"/>-->
+
+
+    <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234"/>-->
+
+    <!--<dubbo:registry address="zookeeper://172.16.48.1:2181"/>-->
+    <dubbo:registry address="zookeeper://172.16.48.131:2181"/>
+
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:reference id="articleService" check="false"
+                     interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService"/>
+
+    <dubbo:reference id="articleMateService" check="false"
+                     interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleMateService"/>
+
+    <dubbo:reference id="metaService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IMetaService"/>
+
+    <dubbo:reference id="attachService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IAttachService"/>
+
+    <dubbo:reference id="commentService" check="false"
+                     interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ICommentService"/>
+
+    <dubbo:reference id="logService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ILogService"/>
+
+    <dubbo:reference id="optionService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IOptionService"/>
+
+    <dubbo:reference id="searchService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ISearchService"/>
+
+    <dubbo:reference id="siteService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.ISiteService"/>
+
+    <dubbo:reference id="userService" check="false" interface="cn.edu.sdu.wh.lqy.lingxi.blog.service.IUserService"/>
+
+
+</beans>
