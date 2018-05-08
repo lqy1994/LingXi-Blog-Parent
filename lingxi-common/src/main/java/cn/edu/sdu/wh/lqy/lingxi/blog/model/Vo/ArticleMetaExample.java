@@ -249,7 +249,7 @@ public class ArticleMetaExample implements Serializable {
 
     /**
      */
-    public static class Criteria extends GeneratedCriteria {
+    public static class Criteria extends GeneratedCriteria implements Serializable {
 
         protected Criteria() {
             super();
