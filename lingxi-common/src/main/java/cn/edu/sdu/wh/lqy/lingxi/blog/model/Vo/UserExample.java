@@ -881,4 +881,15 @@ public class UserExample implements Serializable {
             this(condition, value, secondValue, null);
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserExample{" +
+                "orderByClause='" + orderByClause + '\'' +
+                ", distinct=" + distinct +
+                ", oredCriteria=" + oredCriteria +
+                ", limit=" + limit +
+                ", offset=" + offset +
+                '}';
+    }
 }
