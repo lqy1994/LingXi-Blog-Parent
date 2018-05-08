@@ -1,9 +1,10 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttachVoExample {
+public class AttachExample implements Serializable {
 
     protected String orderByClause;
 
@@ -15,7 +16,7 @@ public class AttachVoExample {
 
     private Integer offset;
 
-    public AttachVoExample() {
+    public AttachExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

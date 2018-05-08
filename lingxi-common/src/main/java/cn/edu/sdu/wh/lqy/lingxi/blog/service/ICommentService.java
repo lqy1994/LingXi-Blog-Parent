@@ -2,7 +2,7 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.service;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.CommentBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Comment;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample;
 import com.github.pagehelper.PageInfo;
 
 
@@ -25,12 +25,12 @@ public interface ICommentService {
 
     /**
      * 获取文章下的评论
-     * @param commentVoExample
+     * @param commentExample
      * @param page
      * @param limit
      * @return Comment
      */
-    PageInfo<Comment> getCommentsWithPage(CommentVoExample commentVoExample, int page, int limit);
+    PageInfo<Comment> getCommentsWithPage(CommentExample commentExample, int page, int limit);
 
 
     /**
