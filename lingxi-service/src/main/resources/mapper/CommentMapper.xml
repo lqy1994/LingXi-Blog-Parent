@@ -84,7 +84,7 @@
   <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -100,7 +100,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -134,7 +134,7 @@
     delete from comment
     where coid = #{coid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample">
+  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample">
     delete from comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -243,7 +243,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample" resultType="java.lang.Long">
     select count(*) from comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

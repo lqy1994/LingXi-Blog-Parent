@@ -3,11 +3,9 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.service.impl;
 import cn.edu.sdu.wh.lqy.lingxi.blog.constant.WebConstant;
 import cn.edu.sdu.wh.lqy.lingxi.blog.mapper.LogMapper;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Log;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogVoExample;
-import cn.edu.sdu.wh.lqy.lingxi.blog.service.ICommentService;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.ILogService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.DateKit;
-import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,10 +46,10 @@ public class LogServiceImpl implements ILogService {
         if (limit < 1 || limit > WebConstant.MAX_POSTS) {
             limit = 10;
         }
-        LogVoExample logVoExample = new LogVoExample();
-        logVoExample.setOrderByClause("id desc");
+        LogExample logExample = new LogExample();
+        logExample.setOrderByClause("id desc");
         PageHelper.startPage((page - 1) * limit, limit);
-        List<Log> logs = logMapper.selectByExample(logVoExample);
+        List<Log> logs = logMapper.selectByExample(logExample);
         LOGGER.debug("Exit getLogs method");
         return logs;
     }

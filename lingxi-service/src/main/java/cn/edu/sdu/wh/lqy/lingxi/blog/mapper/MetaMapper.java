@@ -1,7 +1,7 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.mapper;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.MetaVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.MetaExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -12,9 +12,9 @@ import java.util.Map;
 @Component
 public interface MetaMapper {
 
-    long countByExample(MetaVoExample example);
+    long countByExample(MetaExample example);
 
-    int deleteByExample(MetaVoExample example);
+    int deleteByExample(MetaExample example);
 
     int deleteByPrimaryKey(Integer mid);
 
@@ -22,13 +22,13 @@ public interface MetaMapper {
 
     int insertSelective(Meta record);
 
-    List<Meta> selectByExample(MetaVoExample example);
+    List<Meta> selectByExample(MetaExample example);
 
     Meta selectByPrimaryKey(Integer mid);
 
-    int updateByExampleSelective(@Param("record") Meta record, @Param("example") MetaVoExample example);
+    int updateByExampleSelective(@Param("record") Meta record, @Param("example") MetaExample example);
 
-    int updateByExample(@Param("record") Meta record, @Param("example") MetaVoExample example);
+    int updateByExample(@Param("record") Meta record, @Param("example") MetaExample example);
 
     int updateByPrimaryKeySelective(Meta record);
 

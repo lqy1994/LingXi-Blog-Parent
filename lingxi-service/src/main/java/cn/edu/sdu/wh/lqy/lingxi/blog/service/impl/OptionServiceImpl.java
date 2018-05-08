@@ -2,10 +2,8 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.service.impl;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.mapper.OptionMapper;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Option;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.OptionVoExample;
-import cn.edu.sdu.wh.lqy.lingxi.blog.service.IMetaService;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.OptionExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IOptionService;
-import com.alibaba.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +60,6 @@ public class OptionServiceImpl implements IOptionService {
 
     @Override
     public List<Option> getOptions() {
-        return optionMapper.selectByExample(new OptionVoExample());
+        return optionMapper.selectByExample(new OptionExample());
     }
 }

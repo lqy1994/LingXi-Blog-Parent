@@ -1,7 +1,7 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.mapper;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.User;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.UserVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.UserExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @Component
 public interface UserMapper {
 
-    long countByExample(UserVoExample example);
+    long countByExample(UserExample example);
 
-    int deleteByExample(UserVoExample example);
+    int deleteByExample(UserExample example);
 
     int deleteByPrimaryKey(Integer uid);
 
@@ -20,13 +20,13 @@ public interface UserMapper {
 
     int insertSelective(User record);
 
-    List<User> selectByExample(UserVoExample example);
+    List<User> selectByExample(UserExample example);
 
     User selectByPrimaryKey(Integer uid);
 
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserVoExample example);
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 
-    int updateByExample(@Param("record") User record, @Param("example") UserVoExample example);
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
     int updateByPrimaryKeySelective(User record);
 

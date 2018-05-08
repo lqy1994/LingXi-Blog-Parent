@@ -52,7 +52,7 @@ public class SiteServiceImpl implements ISiteService {
         if (limit < 0 || limit > 10) {
             limit = 10;
         }
-        CommentVoExample example = new CommentVoExample();
+        CommentExample example = new CommentExample();
         example.setOrderByClause("created desc");
         PageHelper.startPage(1, limit);
         List<Comment> byPage = commentMapper.selectByExampleWithBLOBs(example);
@@ -155,13 +155,13 @@ public class SiteServiceImpl implements ISiteService {
         articleExample.createCriteria().andTypeEqualTo(TypeEnum.ARTICLE.getType()).andStatusEqualTo(TypeEnum.PUBLISH.getType());
         Long articles =   articleMapper.countByExample(articleExample);
 
-        Long comments = commentMapper.countByExample(new CommentVoExample());
+        Long comments = commentMapper.countByExample(new CommentExample());
 
-        Long attachs = attachMapper.countByExample(new AttachVoExample());
+        Long attachs = attachMapper.countByExample(new AttachExample());
 
-        MetaVoExample metaVoExample = new MetaVoExample();
-        metaVoExample.createCriteria().andTypeEqualTo(TypeEnum.LINK.getType());
-        Long links = metaMapper.countByExample(metaVoExample);
+        MetaExample metaExample = new MetaExample();
+        metaExample.createCriteria().andTypeEqualTo(TypeEnum.LINK.getType());
+        Long links = metaMapper.countByExample(metaExample);
 
         statistics.setArticles(articles);
         statistics.setComments(comments);

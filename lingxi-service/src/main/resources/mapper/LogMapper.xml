@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, action, data, author_id, ip, created
   </sql>
-  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogVoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,7 +102,7 @@
     delete from log
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogVoExample">
+  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogExample">
     delete from log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogVoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogExample" resultType="java.lang.Long">
     select count(*) from log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

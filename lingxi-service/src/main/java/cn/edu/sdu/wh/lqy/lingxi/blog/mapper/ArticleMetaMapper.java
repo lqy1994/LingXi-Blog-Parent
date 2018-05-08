@@ -1,7 +1,7 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.mapper;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMeta;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.RelationshipVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMetaExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @Component
 public interface ArticleMetaMapper {
 
-    long countByExample(RelationshipVoExample example);
+    long countByExample(ArticleMetaExample example);
 
-    int deleteByExample(RelationshipVoExample example);
+    int deleteByExample(ArticleMetaExample example);
 
     int deleteByPrimaryKey(ArticleMeta key);
 
@@ -20,10 +20,10 @@ public interface ArticleMetaMapper {
 
     int insertSelective(ArticleMeta record);
 
-    List<ArticleMeta> selectByExample(RelationshipVoExample example);
+    List<ArticleMeta> selectByExample(ArticleMetaExample example);
 
-    int updateByExampleSelective(@Param("record") ArticleMeta record, @Param("example") RelationshipVoExample example);
+    int updateByExampleSelective(@Param("record") ArticleMeta record, @Param("example") ArticleMetaExample example);
 
-    int updateByExample(@Param("record") ArticleMeta record, @Param("example") RelationshipVoExample example);
+    int updateByExample(@Param("record") ArticleMeta record, @Param("example") ArticleMetaExample example);
 
 }

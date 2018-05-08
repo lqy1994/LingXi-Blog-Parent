@@ -4,10 +4,9 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.constant.RestPageConst;
 import cn.edu.sdu.wh.lqy.lingxi.blog.controller.BaseController;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.ApiResponse;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Comment;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.User;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.ICommentService;
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +30,10 @@ public class AdminCommentController extends BaseController {
     public String index(@RequestParam(value = "page", defaultValue = "1") int page,
                         @RequestParam(value = "limit", defaultValue = "15") int limit, HttpServletRequest request) {
         User users = this.user(request);
-        CommentVoExample commentVoExample = new CommentVoExample();
-        commentVoExample.setOrderByClause("coid desc");
-        commentVoExample.createCriteria().andAuthorIdNotEqualTo(users.getUid());
-        PageInfo<Comment> commentsPaginator = commentService.getCommentsWithPage(commentVoExample, page, limit);
+        CommentExample commentExample = new CommentExample();
+        commentExample.setOrderByClause("coid desc");
+        commentExample.createCriteria().andAuthorIdNotEqualTo(users.getUid());
+        PageInfo<Comment> commentsPaginator = commentService.getCommentsWithPage(commentExample, page, limit);
         request.setAttribute("comments", commentsPaginator);
         return RestPageConst.ADMIN_COMMENT_LIST;
     }

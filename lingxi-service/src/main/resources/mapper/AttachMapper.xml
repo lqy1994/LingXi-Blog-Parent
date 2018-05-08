@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, fname, ftype, fkey, author_id, created
   </sql>
-  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachVoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,7 +102,7 @@
     delete from attach
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachVoExample">
+  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachExample">
     delete from attach
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachVoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachExample" resultType="java.lang.Long">
     select count(*) from attach
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

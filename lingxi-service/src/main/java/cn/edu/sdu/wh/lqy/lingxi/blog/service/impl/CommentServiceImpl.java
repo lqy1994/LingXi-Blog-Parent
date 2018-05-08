@@ -6,12 +6,11 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.mapper.CommentMapper;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.CommentBo;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Comment;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.ICommentService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.DateKit;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.TaleUtils;
-import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -76,10 +75,10 @@ public class CommentServiceImpl implements ICommentService {
 
         if (null != cid) {
             PageHelper.startPage(page, limit);
-            CommentVoExample commentVoExample = new CommentVoExample();
-            commentVoExample.createCriteria().andCidEqualTo(cid).andParentEqualTo(0).andStatusIsNotNull().andStatusEqualTo("approved");
-            commentVoExample.setOrderByClause("coid desc");
-            List<Comment> parents = commentMapper.selectByExampleWithBLOBs(commentVoExample);
+            CommentExample commentExample = new CommentExample();
+            commentExample.createCriteria().andCidEqualTo(cid).andParentEqualTo(0).andStatusIsNotNull().andStatusEqualTo("approved");
+            commentExample.setOrderByClause("coid desc");
+            List<Comment> parents = commentMapper.selectByExampleWithBLOBs(commentExample);
             PageInfo<Comment> commentPaginator = new PageInfo<>(parents);
             PageInfo<CommentBo> returnBo = copyPageInfo(commentPaginator);
             if (parents.size() != 0) {
@@ -96,9 +95,9 @@ public class CommentServiceImpl implements ICommentService {
     }
 
     @Override
-    public PageInfo<Comment> getCommentsWithPage(CommentVoExample commentVoExample, int page, int limit) {
+    public PageInfo<Comment> getCommentsWithPage(CommentExample commentExample, int page, int limit) {
         PageHelper.startPage(page, limit);
-        List<Comment> comments = commentMapper.selectByExampleWithBLOBs(commentVoExample);
+        List<Comment> comments = commentMapper.selectByExampleWithBLOBs(commentExample);
         PageInfo<Comment> pageInfo = new PageInfo<>(comments);
         return pageInfo;
     }

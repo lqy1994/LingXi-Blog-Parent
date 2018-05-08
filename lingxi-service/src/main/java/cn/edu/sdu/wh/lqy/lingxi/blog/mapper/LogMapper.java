@@ -1,7 +1,7 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.mapper;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Log;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.LogExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -9,9 +9,9 @@ import java.util.List;
 
 @Component
 public interface LogMapper {
-    long countByExample(LogVoExample example);
+    long countByExample(LogExample example);
 
-    int deleteByExample(LogVoExample example);
+    int deleteByExample(LogExample example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -19,13 +19,13 @@ public interface LogMapper {
 
     int insertSelective(Log record);
 
-    List<Log> selectByExample(LogVoExample example);
+    List<Log> selectByExample(LogExample example);
 
     Log selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Log record, @Param("example") LogVoExample example);
+    int updateByExampleSelective(@Param("record") Log record, @Param("example") LogExample example);
 
-    int updateByExample(@Param("record") Log record, @Param("example") LogVoExample example);
+    int updateByExample(@Param("record") Log record, @Param("example") LogExample example);
 
     int updateByPrimaryKeySelective(Log record);
 

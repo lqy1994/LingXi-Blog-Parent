@@ -1,7 +1,7 @@
 package cn.edu.sdu.wh.lqy.lingxi.blog.mapper;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Comment;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.CommentExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @Component
 public interface CommentMapper {
 
-    long countByExample(CommentVoExample example);
+    long countByExample(CommentExample example);
 
-    int deleteByExample(CommentVoExample example);
+    int deleteByExample(CommentExample example);
 
     int deleteByPrimaryKey(Integer coid);
 
@@ -20,17 +20,17 @@ public interface CommentMapper {
 
     int insertSelective(Comment record);
 
-    List<Comment> selectByExampleWithBLOBs(CommentVoExample example);
+    List<Comment> selectByExampleWithBLOBs(CommentExample example);
 
-    List<Comment> selectByExample(CommentVoExample example);
+    List<Comment> selectByExample(CommentExample example);
 
     Comment selectByPrimaryKey(Integer coid);
 
-    int updateByExampleSelective(@Param("record") Comment record, @Param("example") CommentVoExample example);
+    int updateByExampleSelective(@Param("record") Comment record, @Param("example") CommentExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Comment record, @Param("example") CommentVoExample example);
+    int updateByExampleWithBLOBs(@Param("record") Comment record, @Param("example") CommentExample example);
 
-    int updateByExample(@Param("record") Comment record, @Param("example") CommentVoExample example);
+    int updateByExample(@Param("record") Comment record, @Param("example") CommentExample example);
 
     int updateByPrimaryKeySelective(Comment record);
 

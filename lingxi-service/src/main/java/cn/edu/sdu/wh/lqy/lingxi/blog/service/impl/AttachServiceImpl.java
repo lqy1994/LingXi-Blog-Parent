@@ -2,11 +2,9 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.service.impl;
 
 import cn.edu.sdu.wh.lqy.lingxi.blog.mapper.AttachMapper;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Attach;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachVoExample;
-import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleMateService;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.AttachExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IAttachService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.DateKit;
-import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -26,9 +24,9 @@ public class AttachServiceImpl implements IAttachService {
     @Override
     public PageInfo<Attach> getAttaches(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
-        AttachVoExample attachVoExample = new AttachVoExample();
-        attachVoExample.setOrderByClause("id desc");
-        List<Attach> attaches = attachMapper.selectByExample(attachVoExample);
+        AttachExample attachExample = new AttachExample();
+        attachExample.setOrderByClause("id desc");
+        List<Attach> attaches = attachMapper.selectByExample(attachExample);
         return new PageInfo<>(attaches);
     }
 

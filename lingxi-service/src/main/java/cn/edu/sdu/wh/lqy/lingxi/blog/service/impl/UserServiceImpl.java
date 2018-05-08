@@ -3,10 +3,9 @@ package cn.edu.sdu.wh.lqy.lingxi.blog.service.impl;
 import cn.edu.sdu.wh.lqy.lingxi.blog.exception.LingXiException;
 import cn.edu.sdu.wh.lqy.lingxi.blog.mapper.UserMapper;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.User;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.UserVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.UserExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IUserService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.TaleUtils;
-import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,8 +48,8 @@ public class UserServiceImpl implements IUserService {
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             throw new LingXiException("用户名和密码不能为空");
         }
-        UserVoExample example = new UserVoExample();
-        UserVoExample.Criteria criteria = example.createCriteria();
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
         criteria.andUsernameEqualTo(username);
         long count = userMapper.countByExample(example);
         if (count < 1) {

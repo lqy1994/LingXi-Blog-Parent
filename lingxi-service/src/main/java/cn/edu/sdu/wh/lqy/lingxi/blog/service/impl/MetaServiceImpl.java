@@ -6,7 +6,7 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.mapper.MetaMapper;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMeta;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.MetaVoExample;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.MetaExample;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.MetaDTO;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.TypeEnum;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleMateService;
@@ -51,10 +51,10 @@ public class MetaServiceImpl implements IMetaService {
     @Override
     public List<Meta> getMetas(String types) {
         if (StringUtils.isNotBlank(types)) {
-            MetaVoExample metaVoExample = new MetaVoExample();
-            metaVoExample.setOrderByClause("sort desc, mid desc");
-            metaVoExample.createCriteria().andTypeEqualTo(types);
-            return metaMapper.selectByExample(metaVoExample);
+            MetaExample metaExample = new MetaExample();
+            metaExample.setOrderByClause("sort desc, mid desc");
+            metaExample.createCriteria().andTypeEqualTo(types);
+            return metaMapper.selectByExample(metaExample);
         }
         return null;
     }
@@ -112,9 +112,9 @@ public class MetaServiceImpl implements IMetaService {
     @Transactional
     public void saveMeta(String type, String name, Integer mid) {
         if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(name)) {
-            MetaVoExample metaVoExample = new MetaVoExample();
-            metaVoExample.createCriteria().andTypeEqualTo(type).andNameEqualTo(name);
-            List<Meta> metaVos = metaMapper.selectByExample(metaVoExample);
+            MetaExample metaExample = new MetaExample();
+            metaExample.createCriteria().andTypeEqualTo(type).andNameEqualTo(name);
+            List<Meta> metaVos = metaMapper.selectByExample(metaExample);
             Meta metas;
             if (metaVos.size() != 0) {
                 throw new LingXiException("已经存在该项");
@@ -150,9 +150,9 @@ public class MetaServiceImpl implements IMetaService {
     }
 
     private void saveOrUpdate(Integer cid, String name, String type) {
-        MetaVoExample metaVoExample = new MetaVoExample();
-        metaVoExample.createCriteria().andTypeEqualTo(type).andNameEqualTo(name);
-        List<Meta> metaVos = metaMapper.selectByExample(metaVoExample);
+        MetaExample metaExample = new MetaExample();
+        metaExample.createCriteria().andTypeEqualTo(type).andNameEqualTo(name);
+        List<Meta> metaVos = metaMapper.selectByExample(metaExample);
 
         int mid;
         Meta metas;

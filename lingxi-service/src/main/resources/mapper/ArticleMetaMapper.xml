@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     cid, mid
   </sql>
-  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.RelationshipVoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMetaExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,7 +93,7 @@
     where cid = #{cid,jdbcType=INTEGER}
       and mid = #{mid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.RelationshipVoExample">
+  <delete id="deleteByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMetaExample">
     delete from article_meta
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -122,7 +122,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.RelationshipVoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleMetaExample" resultType="java.lang.Long">
     select count(*) from article_meta
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
