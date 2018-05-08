@@ -12,9 +12,9 @@ public interface IArticleService {
     /**
      * 发布文章
      *
-     * @param contents
+     * @param article
      */
-    String publish(Article contents);
+    String publish(Article article);
 
     /**
      * 查询文章返回多条数据
@@ -69,7 +69,7 @@ public interface IArticleService {
      * @param limit
      * @return
      */
-    PageInfo<Article> getArticlesWithPage(ArticleExample commentVoExample, Integer page, Integer limit);
+    PageInfo<Article> getArticlesWithPage(ArticleExample articleExample, Integer page, Integer limit);
 
     /**
      * 根据文章id删除
@@ -83,7 +83,7 @@ public interface IArticleService {
      *
      * @param contents
      */
-    String updateArticle(Article contents);
+    String updateArticle(Article article);
 
 
     /**

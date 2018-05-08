@@ -212,9 +212,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public PageInfo<Article> getArticlesWithPage(ArticleExample commentVoExample, Integer page, Integer limit) {
+    public PageInfo<Article> getArticlesWithPage(ArticleExample articleExample, Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
-        List<Article> articles = articleMapper.selectByExampleWithBLOBs(commentVoExample);
+        List<Article> articles = articleMapper.selectByExampleWithBLOBs(articleExample);
         return new PageInfo<>(articles);
     }
 
