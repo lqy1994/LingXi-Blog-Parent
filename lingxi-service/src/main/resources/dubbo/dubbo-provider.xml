@@ -14,7 +14,7 @@
     <dubbo:registry address="${dubbo.registry.address}"/>
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" host="127.0.0.1" port="${dubbo.protocol.port}"/>
+    <dubbo:protocol name="dubbo" host="${dubbo.protocol.host}" port="${dubbo.protocol.port}"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="articleService" class="cn.edu.sdu.wh.lqy.lingxi.blog.service.impl.ArticleServiceImpl"/>

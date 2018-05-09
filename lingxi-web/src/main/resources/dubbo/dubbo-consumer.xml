@@ -9,15 +9,15 @@
     <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
     <dubbo:application name="lingxi-dubbo-consumer"/>
 
-    <dubbo:protocol host="172.16.48.1" port="20880"/>
-    <!--<dubbo:protocol host="172.16.48.131" port="20880"/>-->
+    <!--<dubbo:protocol host="10.37.129.2" port="20880"/>-->
+    <dubbo:protocol host="${dubbo.protocol.host}" port="20880"/>
 
 
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
     <!--<dubbo:registry address="multicast://224.5.6.7:1234"/>-->
 
-    <!--<dubbo:registry address="zookeeper://172.16.48.1:2181"/>-->
-    <dubbo:registry address="zookeeper://172.16.48.131:2181"/>
+    <!--<dubbo:registry address="zookeeper://10.37.129.2:2181"/>-->
+    <dubbo:registry address="zookeeper://10.211.55.4:2181"/>
 
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->

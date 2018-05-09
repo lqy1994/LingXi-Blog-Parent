@@ -1,10 +1,9 @@
 server:
   port: 8000
-  baseIp: 10.37.129.2
 spring:
   datasource:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://${server.baseIp}:3306/lingxi?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+      url: jdbc:mysql://${lingxi.client.ip}:3306/lingxi?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
       username: root
       password: root
       type: com.alibaba.druid.pool.DruidDataSource
@@ -20,15 +19,15 @@ spring:
       test-on-return: false
       filters: stat
   kafka:
-      bootstrap-servers: ${server.baseIp}:9092
+      bootstrap-servers: ${lingxi.client.ip}:9092
       consumer:
         group-id: lingxi-blog
   data:
     elasticsearch:
-      cluster-nodes: ${server.baseIp}:9300
+      cluster-nodes: ${lingxi.client.ip}:9300
 #  Redis
   redis:
-    host: ${server.baseIp}
+    host: ${lingxi.client.ip}
     port: 6379
     database: 1
     password:
@@ -60,9 +59,13 @@ pagehelper:
   params: count=countSql
 
 lingxi:
+  server:
+    ip: 10.211.55.4
+  client:
+    ip: 10.211.55.2
   elasticsearch:
     cluster-name: Elasticsearch-Lqy
-    host-name: ${server.baseIp}
+    host-name: ${lingxi.client.ip}
     port: 9300
     pool-size: 5
 
