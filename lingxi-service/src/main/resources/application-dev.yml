@@ -74,21 +74,3 @@ logging:
     cn.edu.sdu.wh.lqy.lingxi.blog: info
   file: /var/tmp/logs/lingxi/lingxi-service.log
 
-
-#dubbo:
-#  application:
-#    id: lingxi-dubbo-service
-#    name: lingxi-dubbo-service
-#    version: 1.0.0
-#
-#  protocol:
-##    id: lingxi-dubbo
-##    name: lingxi-dubbo
-#    host: 127.0.0.1
-#    port: 20880
-#    status: server
-#
-#  registry:
-#    id: lingxi-dubbo-registry
-#    address: zookeeper://172.16.48.131:2181
-
