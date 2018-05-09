@@ -29,10 +29,9 @@ public class AdminCommentController extends BaseController {
     @GetMapping(value = "")
     public String index(@RequestParam(value = "page", defaultValue = "1") int page,
                         @RequestParam(value = "limit", defaultValue = "15") int limit, HttpServletRequest request) {
-        User users = this.user(request);
         CommentExample commentExample = new CommentExample();
         commentExample.setOrderByClause("coid desc");
-        commentExample.createCriteria().andAuthorIdNotEqualTo(users.getUid());
+        commentExample.createCriteria().andAuthorIdNotEqualTo(this.getUid(request));
         PageInfo<Comment> commentsPaginator = commentService.getCommentsWithPage(commentExample, page, limit);
         request.setAttribute("comments", commentsPaginator);
         return RestPageConst.ADMIN_COMMENT_LIST;

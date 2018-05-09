@@ -5,10 +5,7 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.constant.WebConstant;
 import cn.edu.sdu.wh.lqy.lingxi.blog.controller.BaseController;
 import cn.edu.sdu.wh.lqy.lingxi.blog.exception.LingXiException;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.ApiResponse;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.ArticleExample;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Meta;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.User;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.*;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.LogActions;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.TypeEnum;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IArticleService;
@@ -77,8 +74,9 @@ public class AdminArticleController extends BaseController {
     @PostMapping(value = "/publish")
     @ResponseBody
     public ApiResponse publishArticle(Article article, HttpServletRequest request) {
-        User users = this.user(request);
-        article.setAuthorId(users.getUid());
+//        User users = this.user(request);
+        AuthorizingUser currentUser = getCurrentUser();
+        article.setAuthorId(Math.toIntExact(currentUser.getUserId()));
         article.setType(TypeEnum.ARTICLE.getType());
         if (StringUtils.isBlank(article.getCategories())) {
             article.setCategories("默认分类");
@@ -94,8 +92,8 @@ public class AdminArticleController extends BaseController {
     @PostMapping(value = "/modify")
     @ResponseBody
     public ApiResponse modifyArticle(Article article, HttpServletRequest request) {
-        User users = this.user(request);
-        article.setAuthorId(users.getUid());
+        AuthorizingUser currentUser = getCurrentUser();
+        article.setAuthorId(Math.toIntExact(currentUser.getUserId()));
         article.setType(TypeEnum.ARTICLE.getType());
         String result = articleService.updateArticle(article);
         if (!WebConstant.SUCCESS_RESULT.equals(result)) {

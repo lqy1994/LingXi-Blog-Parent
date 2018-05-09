@@ -41,12 +41,13 @@ public abstract class BaseController {
      * @param request
      * @return
      */
-    public User user(HttpServletRequest request) {
-        return TaleUtils.getLoginUser(request);
+    public AuthorizingUser user(HttpServletRequest request) {
+//        return TaleUtils.getLoginUser(request);
+        return getCurrentUser();
     }
 
     public Integer getUid(HttpServletRequest request){
-        return this.user(request).getUid();
+        return Math.toIntExact(this.user(request).getUserId());
     }
 
     public String render_404() {

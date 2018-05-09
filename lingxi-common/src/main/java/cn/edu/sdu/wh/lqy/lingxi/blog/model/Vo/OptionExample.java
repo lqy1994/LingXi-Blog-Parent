@@ -339,7 +339,7 @@ public class OptionExample implements Serializable {
 
     /**
      */
-    public static class Criteria extends GeneratedCriteria implements Serializable {
+    public static class Criteria extends GeneratedCriteria  implements Serializable {
 
         protected Criteria() {
             super();

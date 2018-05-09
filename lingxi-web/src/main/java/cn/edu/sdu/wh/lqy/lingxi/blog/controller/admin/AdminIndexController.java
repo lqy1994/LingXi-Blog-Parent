@@ -6,15 +6,13 @@ import cn.edu.sdu.wh.lqy.lingxi.blog.controller.BaseController;
 import cn.edu.sdu.wh.lqy.lingxi.blog.exception.LingXiException;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.ApiResponse;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.Bo.StatisticsBo;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Article;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Comment;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.Log;
-import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.User;
+import cn.edu.sdu.wh.lqy.lingxi.blog.model.Vo.*;
 import cn.edu.sdu.wh.lqy.lingxi.blog.model.dto.LogActions;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.ILogService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.ISiteService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.service.IUserService;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.GsonUtils;
+import cn.edu.sdu.wh.lqy.lingxi.blog.utils.PasswordUtils;
 import cn.edu.sdu.wh.lqy.lingxi.blog.utils.TaleUtils;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.apache.commons.lang3.StringUtils;
@@ -89,10 +87,10 @@ public class AdminIndexController extends BaseController {
     @PostMapping(value = "/profile")
     @ResponseBody
     public ApiResponse saveProfile(@RequestParam String screenName, @RequestParam String email, HttpServletRequest request, HttpSession session) {
-        User users = this.user(request);
+
         if (StringUtils.isNotBlank(screenName) && StringUtils.isNotBlank(email)) {
             User temp = new User();
-            temp.setUid(users.getUid());
+            temp.setUid(this.getUid(request));
             temp.setScreenName(screenName);
             temp.setEmail(email);
             userService.updateByUid(temp);
@@ -113,12 +111,12 @@ public class AdminIndexController extends BaseController {
     @PostMapping(value = "/password")
     @ResponseBody
     public ApiResponse upPwd(@RequestParam String oldPassword, @RequestParam String password, HttpServletRequest request, HttpSession session) {
-        User users = this.user(request);
+        User user = TaleUtils.getLoginUser(request);
         if (StringUtils.isBlank(oldPassword) || StringUtils.isBlank(password)) {
             return ApiResponse.fail("请确认信息输入完整");
         }
 
-        if (!users.getPassword().equals(TaleUtils.MD5encode(users.getUsername() + oldPassword))) {
+        if (!user.getPassword().equals(TaleUtils.MD5encode(user.getUsername() + oldPassword))) {
             return ApiResponse.fail("旧密码错误");
         }
         if (password.length() < 6 || password.length() > 14) {
@@ -126,16 +124,17 @@ public class AdminIndexController extends BaseController {
         }
 
         try {
-            User temp = new User();
-            temp.setUid(users.getUid());
-            String pwd = TaleUtils.MD5encode(users.getUsername() + password);
-            temp.setPassword(pwd);
-            userService.updateByUid(temp);
+            User tempUser = new User();
+            tempUser.setUid(user.getUid());
+            String encodePwd = PasswordUtils.getMd5(user.getPassword(), user.getUsername(), user.getSalt());
+//            String pwd = TaleUtils.MD5encode(user.getUsername() + password);
+            tempUser.setPassword(encodePwd);
+            userService.updateByUid(tempUser);
             logService.insertLog(LogActions.UP_PWD.getAction(), null, request.getRemoteAddr(), this.getUid(request));
 
             //更新session中的数据
             User original = (User) session.getAttribute(WebConstant.LOGIN_SESSION_KEY);
-            original.setPassword(pwd);
+            original.setPassword(encodePwd);
             session.setAttribute(WebConstant.LOGIN_SESSION_KEY, original);
             return ApiResponse.ok();
         } catch (Exception e) {

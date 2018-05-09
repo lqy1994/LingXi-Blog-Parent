@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 
 
 //@Service(interfaceClass = IArticleService.class)
-public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements IArticleService {
+public class ArticleServiceImpl /*extends ServiceImpl<ArticleMapper, Article>*/ implements IArticleService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleServiceImpl.class);
 
@@ -67,7 +67,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     @Transactional
     public String publish(Article article) {
-        if (null == article) {
+        if (article == null) {
             return "文章对象为空";
         }
         if (StringUtils.isBlank(article.getTitle())) {
@@ -108,15 +108,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
         int time = DateKit.getCurrentUnixTime();
 
-        String string = valueOperations().get(WebConstant.ARTICLE_CURRENT_ID).toString();
-        Integer curIdVal = Integer.valueOf(string.replaceAll("\"", ""));
-        if (curIdVal != null) {
-            curIdVal++;
-            article.setId(curIdVal);
-            valueOperations().set(WebConstant.ARTICLE_CURRENT_ID, String.valueOf(curIdVal), 60 * 60 * 24 * 30 * 12, TimeUnit.SECONDS);
-        } else {
-            article.setId(new Random().nextInt(1000000));
-        }
+//        String string = valueOperations().get(WebConstant.ARTICLE_CURRENT_ID).toString();
+//        Integer curIdVal = Integer.valueOf(string.replaceAll("\"", ""));
+//        if (curIdVal != null) {
+//            curIdVal++;
+//            article.setId(curIdVal);
+//            valueOperations().set(WebConstant.ARTICLE_CURRENT_ID, String.valueOf(curIdVal), 365 * 2, TimeUnit.DAYS);
+//        } else {
+//            article.setId(new Random().nextInt(1000000));
+//        }
 
         article.setCreated(time);
         article.setModified(time);
@@ -182,7 +182,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Override
     public void updateArticleById(Article article) {
-        if (null != article && null != article.getId()) {
+        if (article != null && article.getId() != null) {
             articleMapper.updateByPrimaryKeySelective(article);
 //            articleMapper.updateById(article);
         }
@@ -260,10 +260,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     private ServiceMultiResult<ArticleDTO> simpleQuery(BrowseSearch browseSearch) {
-
         int page = browseSearch.getStart() / browseSearch.getSize();
         PageHelper.startPage(page, browseSearch.getSize());
-
         ArticleExample articleExample = new ArticleExample();
         ArticleExample.Criteria criteria = articleExample.createCriteria();
         criteria.andTypeEqualTo(TypeEnum.ARTICLE.getType());
@@ -274,7 +272,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         }
         RangeValueBlock hitsBlock = RangeValueBlock.matchHits(browseSearch.getHitsBlock());
         if (!RangeValueBlock.ALL.equals(hitsBlock)) {
-            if (hitsBlock.getMin() > 0 && hitsBlock.getMax() >=  hitsBlock.getMin()) {
+            if (hitsBlock.getMin() > 0 && hitsBlock.getMax() >= hitsBlock.getMin()) {
                 criteria.andHitsBetween(hitsBlock.getMin(), hitsBlock.getMax());
             }
             if (hitsBlock.getMin() > 0 && hitsBlock.getMax() < 0) {
@@ -286,7 +284,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         }
         RangeValueBlock wordCntBlock = RangeValueBlock.matchWordCnt(browseSearch.getWordCntBlock());
         if (!RangeValueBlock.ALL.equals(wordCntBlock)) {
-            if (wordCntBlock.getMin() > 0 && wordCntBlock.getMax() >=  wordCntBlock.getMin()) {
+            if (wordCntBlock.getMin() > 0 && wordCntBlock.getMax() >= wordCntBlock.getMin()) {
                 criteria.andWordCntBetween(wordCntBlock.getMin(), wordCntBlock.getMax());
             }
             if (wordCntBlock.getMin() > 0 && wordCntBlock.getMax() < 0) {

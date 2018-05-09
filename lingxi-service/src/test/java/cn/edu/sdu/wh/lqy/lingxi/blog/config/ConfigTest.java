@@ -11,6 +11,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.List;
 
@@ -25,10 +26,19 @@ public class ConfigTest extends BaseApplicationTests {
     @Autowired
     private TransportClient elasticSearchClient;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Test
     public void testSearch() {
-        Article article = articleMapper.selectByPrimaryKey(18);
-        System.out.println(gson.toJson(article));
+//        Article article = articleMapper.selectByPrimaryKey(18);
+//        System.out.println(gson.toJson(article));
+//        List<Article> articleList = articleMapper.selectList(new EntityWrapper<>());
+//        for (Article article : articleList) {
+//            System.out.println(article.getContent().length());
+//            article.setWordCnt(article.getContent().length());
+//            articleMapper.updateByPrimaryKey(article);
+//        }
     }
 
     @Test
@@ -42,4 +52,13 @@ public class ConfigTest extends BaseApplicationTests {
         System.out.println(searchResponse.toString());
     }
 
+    @Test
+    public void testRedis() {
+        String key = "testList";
+        List<String> list = redisTemplate.opsForList().range(key, 1, 3);
+        redisTemplate.opsForList().set(key, 1, "item1");
+
+        List<String> list1 = redisTemplate.opsForList().range(key, 1, 3);
+        System.out.println(list1);
+    }
 }

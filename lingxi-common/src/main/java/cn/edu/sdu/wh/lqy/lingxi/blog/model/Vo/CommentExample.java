@@ -84,7 +84,7 @@ public class CommentExample implements Serializable {
         return offset;
     }
 
-    protected abstract static class GeneratedCriteria implements Serializable {
+    protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
@@ -978,7 +978,7 @@ public class CommentExample implements Serializable {
 
     /**
      */
-    public static class Criteria extends GeneratedCriteria {
+    public static class Criteria extends GeneratedCriteria  implements Serializable {
 
         protected Criteria() {
             super();

@@ -61,9 +61,10 @@ public class AdminPageController extends BaseController {
     @ResponseBody
     public ApiResponse publishPage(@RequestParam String title, @RequestParam String content,
                                    @RequestParam String status, @RequestParam("slug") String thumbnail,
-                                   @RequestParam(required = false) Integer allowComment, @RequestParam(required = false) Integer allowPing, HttpServletRequest request) {
+                                   @RequestParam(required = false) Integer allowComment,
+                                   @RequestParam(required = false) Integer allowPing,
+                                   HttpServletRequest request) {
 
-        User users = this.user(request);
         Article contents = new Article();
         contents.setTitle(title);
         contents.setContent(content);
@@ -76,7 +77,7 @@ public class AdminPageController extends BaseController {
         if (null != allowPing) {
             contents.setAllowPing(allowPing == 1);
         }
-        contents.setAuthorId(users.getUid());
+        contents.setAuthorId(this.getUid(request));
         String result = articleService.publish(contents);
         if (!WebConstant.SUCCESS_RESULT.equals(result)) {
             return ApiResponse.fail(result);
@@ -91,22 +92,21 @@ public class AdminPageController extends BaseController {
                                      @RequestParam String status, @RequestParam String slug,
                                      @RequestParam(required = false) Integer allowComment, @RequestParam(required = false) Integer allowPing, HttpServletRequest request) {
 
-        User users = this.user(request);
-        Article contents = new Article();
-        contents.setId(cid);
-        contents.setTitle(title);
-        contents.setContent(content);
-        contents.setStatus(status);
-        contents.setThumbnail(slug);
-        contents.setType(TypeEnum.PAGE.getType());
+        Article article = new Article();
+        article.setId(cid);
+        article.setTitle(title);
+        article.setContent(content);
+        article.setStatus(status);
+        article.setThumbnail(slug);
+        article.setType(TypeEnum.PAGE.getType());
         if (null != allowComment) {
-            contents.setAllowComment(allowComment == 1);
+            article.setAllowComment(allowComment == 1);
         }
         if (null != allowPing) {
-            contents.setAllowPing(allowPing == 1);
+            article.setAllowPing(allowPing == 1);
         }
-        contents.setAuthorId(users.getUid());
-        String result = articleService.updateArticle(contents);
+        article.setAuthorId(this.getUid(request));
+        String result = articleService.updateArticle(article);
         if (!WebConstant.SUCCESS_RESULT.equals(result)) {
             return ApiResponse.fail(result);
         }

@@ -42,6 +42,8 @@
                     <div class="col-md-12">
                         <form id="articleForm" role="form" novalidate="novalidate">
                             <input type="hidden" name="categories" id="categories"/>
+                            <input type="hidden" name="id"
+                                   th:value="${article!=null and article.id!=null}?${article.id}:''" id="id"/>
                             <input type="hidden" name="hits"
                                    th:value="${article!=null and article.hits!=null}?${article.hits}: ''" id="hits"/>
                             <input type="hidden" name="created"
@@ -50,8 +52,6 @@
                             <input type="hidden" name="commentsNum"
                                    th:value="${article!=null and article.commentsNum!=null}?${article.commentsNum}: ''"
                                    id="commentsNum"/>
-                            <input type="hidden" name="id"
-                                   th:value="${article!=null and article.id!=null}?${article.id}: ''" id="id"/>
                             <input type="hidden" name="status"
                                    th:value="${article!=null and article.status !=null}?${article.status}: 'publish'"
                                    id="status"/>

@@ -85,7 +85,7 @@ public class UserExample implements Serializable {
         return offset;
     }
 
-    protected abstract static class GeneratedCriteria implements Serializable {
+    protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
@@ -796,7 +796,7 @@ public class UserExample implements Serializable {
         }
     }
 
-    public static class Criterion {
+    public static class Criterion implements Serializable {
         private String condition;
 
         private Object value;

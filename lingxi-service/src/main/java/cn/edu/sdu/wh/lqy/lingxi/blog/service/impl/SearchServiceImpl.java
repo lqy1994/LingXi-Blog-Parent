@@ -152,17 +152,17 @@ public class SearchServiceImpl implements ISearchService {
 
 
     @Override
-    public void index(Integer contentId) {
-        this.index(contentId, 0);
+    public void index(Integer artId) {
+        this.index(artId, 0);
     }
 
-    private void index(Integer contentId, int retry) {
+    private void index(Integer artId, int retry) {
         if (retry > ArticleIndexMessage.MAX_RETRY) {
-            LOGGER.error("Retry index times over 3 for content: " + contentId + " Please check it!");
+            LOGGER.error("Retry index times over 3 for article: " + artId + " Please check it!");
             return;
         }
 
-        ArticleIndexMessage message = new ArticleIndexMessage(contentId, ArticleIndexMessage.INDEX, retry);
+        ArticleIndexMessage message = new ArticleIndexMessage(artId, ArticleIndexMessage.INDEX, retry);
         try {
             kafkaTemplate.send(INDEX_TOPIC, objectMapper.writeValueAsString(message));
         } catch (JsonProcessingException e) {

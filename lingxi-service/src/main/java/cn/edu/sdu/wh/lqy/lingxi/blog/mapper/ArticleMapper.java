@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public interface ArticleMapper extends BaseMapper<Article> {
+public interface ArticleMapper/* extends BaseMapper<Article> */{
 
     long countByExample(ArticleExample example);
 

@@ -75,8 +75,7 @@ public class AdminAttachController extends BaseController {
     @PostMapping(value = "upload")
     @ResponseBody
     public ApiResponse upload(HttpServletRequest request, @RequestParam("file") MultipartFile[] multipartFiles) throws IOException {
-        User users = this.user(request);
-        Integer uid = users.getUid();
+        Integer uid = this.getUid(request);
         List<String> errorFiles = new ArrayList<>();
         try {
             for (MultipartFile multipartFile : multipartFiles) {
