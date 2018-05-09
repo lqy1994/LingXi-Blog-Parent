@@ -1,6 +1,6 @@
 server:
   port: 8000
-  baseIp: 172.16.48.1
+  baseIp: 10.37.129.2
 spring:
   datasource:
       driverClassName: com.mysql.jdbc.Driver
